@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/effects/impact_effect.gd" id="1_script"]
+
+[node name="ImpactEffect" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Flash" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-8, -2, -2, -8, 8, -2, 2, 8)
+color = Color(1, 0.2, 0.3, 0.9)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.08
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

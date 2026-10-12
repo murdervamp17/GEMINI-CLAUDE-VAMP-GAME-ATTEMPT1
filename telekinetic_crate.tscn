@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/objects/breakable_object.gd" id="1_breakable"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_crate"]
+size = Vector2(26, 26)
+
+[node name="TelekineticCrate" type="RigidBody2D"]
+mass = 2.0
+gravity_scale = 1.0
+linear_damp = 0.1
+angular_damp = 0.2
+continuous_cd = true
+collision_layer = 1
+collision_mask = 3
+script = ExtResource("1_breakable")
+break_threshold_energy = 18000.0
+physical_fragment_count = 0
+visual_shard_count = 8
+
+[node name="Visual" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-13, -13, 13, -13, 13, 13, -13, 13)
+color = Color(0.35, 0.24, 0.16, 1)
+
+[node name="Inset" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+color = Color(0.22, 0.16, 0.12, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape_crate")

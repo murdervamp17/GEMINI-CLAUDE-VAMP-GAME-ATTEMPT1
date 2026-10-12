@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://shaders/pixel_particle.gdshader" id="1_shader"]
+
+[node name="BloodParticles" type="GPUParticles2D"]
+emitting = true
+amount = 18
+lifetime = 0.45
+one_shot = true
+explosiveness = 0.95
+visibility_rect = Rect2(-80, -80, 160, 160)
+
+[node name="Visual" type="Sprite2D" parent="."]
+visible = false

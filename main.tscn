@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player/vampire.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/objects/telekinetic_crate.tscn" id="2_crate"]
+[ext_resource type="Script" path="res://scripts/effects/effect_manager.gd" id="3_effects"]
+
+[node name="Main" type="Node2D"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Background" type="Polygon2D" parent="World"]
+polygon = PackedVector2Array(-800, -500, 1800, -500, 1800, 900, -800, 900)
+color = Color(0.035, 0.043, 0.055, 1)
+
+[node name="Floor" type="StaticBody2D" parent="World"]
+position = Vector2(320, 310)
+
+[node name="FloorVisual" type="Polygon2D" parent="World/Floor"]
+polygon = PackedVector2Array(-800, 0, 1800, 0, 1800, 50, -800, 50)
+color = Color(0.16, 0.18, 0.21, 1)
+
+[node name="FloorCollision" type="CollisionShape2D" parent="World/Floor"]
+shape = SubResource("RectangleShape_floor")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_floor"]
+size = Vector2(2600, 50)
+
+[node name="Wall" type="StaticBody2D" parent="World"]
+position = Vector2(570, 230)
+
+[node name="WallVisual" type="Polygon2D" parent="World/Wall"]
+polygon = PackedVector2Array(0, -100, 30, -100, 30, 80, 0, 80)
+color = Color(0.23, 0.25, 0.29, 1)
+
+[node name="WallCollision" type="CollisionShape2D" parent="World/Wall"]
+shape = SubResource("RectangleShape_wall")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_wall"]
+size = Vector2(30, 180)
+
+[node name="Vampire" parent="." instance=ExtResource("1_player")]
+position = Vector2(130, 230)
+
+[node name="Crate1" parent="." instance=ExtResource("2_crate")]
+position = Vector2(300, 235)
+
+[node name="Crate2" parent="." instance=ExtResource("2_crate")]
+position = Vector2(390, 250)
+
+[node name="EffectManager" type="Node2D" parent="."]
+script = ExtResource("3_effects")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 180)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
